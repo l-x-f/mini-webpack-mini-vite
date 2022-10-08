@@ -1,0 +1,34 @@
+{
+  "metadata": {},
+  "options": {
+    "assumptions": {},
+    "comments": false,
+    "targets": {},
+    "cloneInputAst": true,
+    "babelrc": false,
+    "configFile": false,
+    "browserslistConfigFile": false,
+    "passPerPreset": false,
+    "envName": "development",
+    "cwd": "E:\\mini-projects\\babel-tests",
+    "root": "E:\\mini-projects\\babel-tests",
+    "rootMode": "root",
+    "plugins": [],
+    "presets": [],
+    "parserOpts": {
+      "sourceType": "module",
+      "plugins": []
+    },
+    "generatorOpts": {
+      "comments": false,
+      "compact": "auto",
+      "sourceMaps": false,
+      "sourceFileName": "unknown"
+    }
+  },
+  "ast": null,
+  "code": "import { cloneDeep } from 'lodash';\nexport const encodeObject = data => encodeURIComponent(JSON.stringify(cloneDeep(data)));\nexport const decodeObject = str => {\n  let res = {};\n  if (!str) return res;\n\n  try {\n    res = JSON.parse(decodeURIComponent(str));\n  } catch (error) {\n    console.log(error);\n  }\n\n  return res;\n};",
+  "map": null,
+  "sourceType": "module",
+  "externalDependencies": {}
+}

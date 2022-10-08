@@ -1,0 +1,251 @@
+{
+  "metadata": {},
+  "options": {
+    "assumptions": {},
+    "parserOpts": {
+      "sourceType": "module",
+      "sourceFileName": "E:\\mini-projects\\babel-tests\\tests\\tsx.tsx",
+      "plugins": [
+        [
+          "typescript",
+          {
+            "disallowAmbiguousJSXLike": false
+          }
+        ],
+        "classProperties",
+        "objectRestSpread",
+        "jsx"
+      ]
+    },
+    "filename": "E:\\mini-projects\\babel-tests\\tests\\tsx.tsx",
+    "targets": {},
+    "cloneInputAst": true,
+    "babelrc": false,
+    "configFile": false,
+    "browserslistConfigFile": false,
+    "passPerPreset": false,
+    "envName": "development",
+    "cwd": "E:\\mini-projects\\babel-tests",
+    "root": "E:\\mini-projects\\babel-tests",
+    "rootMode": "root",
+    "plugins": [
+      {
+        "key": "transform-typescript",
+        "visitor": {
+          "_exploded": {},
+          "_verified": {},
+          "Identifier": {
+            "enter": [
+              null
+            ]
+          },
+          "RestElement": {
+            "enter": [
+              null
+            ]
+          },
+          "Program": {
+            "enter": [
+              null
+            ],
+            "exit": [
+              null
+            ]
+          },
+          "ExportNamedDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "ExportSpecifier": {
+            "enter": [
+              null
+            ]
+          },
+          "ExportDefaultDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSDeclareFunction": {
+            "enter": [
+              null
+            ]
+          },
+          "TSDeclareMethod": {
+            "enter": [
+              null
+            ]
+          },
+          "VariableDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "VariableDeclarator": {
+            "enter": [
+              null
+            ]
+          },
+          "TSIndexSignature": {
+            "enter": [
+              null
+            ]
+          },
+          "ClassDeclaration": {
+            "enter": [
+              null,
+              null
+            ]
+          },
+          "TSModuleDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSInterfaceDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSTypeAliasDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSEnumDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSImportEqualsDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "TSExportAssignment": {
+            "enter": [
+              null
+            ]
+          },
+          "TSTypeAssertion": {
+            "enter": [
+              null
+            ]
+          },
+          "TSAsExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "CallExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "OptionalCallExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "NewExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "JSXOpeningElement": {
+            "enter": [
+              null
+            ]
+          },
+          "TaggedTemplateExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "TSNonNullExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "TSInstantiationExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "AssignmentPattern": {
+            "enter": [
+              null
+            ]
+          },
+          "ArrayPattern": {
+            "enter": [
+              null
+            ]
+          },
+          "ObjectPattern": {
+            "enter": [
+              null
+            ]
+          },
+          "ClassExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "FunctionDeclaration": {
+            "enter": [
+              null
+            ]
+          },
+          "FunctionExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "ObjectMethod": {
+            "enter": [
+              null
+            ]
+          },
+          "ArrowFunctionExpression": {
+            "enter": [
+              null
+            ]
+          },
+          "ClassMethod": {
+            "enter": [
+              null
+            ]
+          },
+          "ClassPrivateMethod": {
+            "enter": [
+              null
+            ]
+          }
+        },
+        "options": {
+          "allowNamespaces": true,
+          "disallowAmbiguousJSXLike": false,
+          "isTSX": true,
+          "jsxPragmaFrag": "React.Fragment",
+          "optimizeConstEnums": false
+        },
+        "externalDependencies": []
+      }
+    ],
+    "presets": [],
+    "generatorOpts": {
+      "filename": "E:\\mini-projects\\babel-tests\\tests\\tsx.tsx",
+      "comments": true,
+      "compact": "auto",
+      "sourceMaps": false,
+      "sourceFileName": "tsx.tsx"
+    }
+  },
+  "ast": null,
+  "code": "import { defineComponent, reactive, nextTick, watch } from 'vue';\nimport { ElTabs, ElTabPane } from 'element-plus';\nimport 'element-plus/es/components/tabs/style/index';\nimport 'element-plus/es/components/tab-pane/style/index';\nimport { useBase } from '@/hooks';\nimport './index.scss';\nexport default defineComponent({\n  props: {\n    modelValue: {\n      type: String,\n      default: ''\n    },\n    tabs: {\n      type: Array,\n      default: () => []\n    },\n    autoMemoryActive: {\n      type: Boolean,\n      default: true\n    }\n  },\n  emits: ['update:modelValue'],\n\n  setup(props, {\n    emit,\n    slots\n  }) {\n    const state = reactive({\n      activeName: ''\n    });\n    const {\n      route,\n      router\n    } = useBase();\n    watch(() => props.modelValue, val => {\n      val && (state.activeName = val);\n    }, {\n      immediate: true\n    }); // 记忆tabs\n\n    if (props.autoMemoryActive) {\n      const {\n        activeName\n      } = route.query;\n\n      if (activeName) {\n        state.activeName = activeName;\n      }\n    }\n\n    const setDefaultTab = value => {\n      nextTick(() => {\n        const name = value || props.tabs[0]?.name;\n\n        if (props.autoMemoryActive) {\n          router.replace({\n            path: route.path,\n            query: { ...route.query,\n              activeName: name\n            }\n          });\n        }\n\n        onTabClick({\n          props: {\n            name\n          }\n        });\n      });\n    };\n\n    watch(() => state.activeName, val => {\n      val && setDefaultTab(val);\n    }, {\n      immediate: true\n    });\n\n    const onTabClick = e => {\n      emit('update:modelValue', e.props.name);\n    };\n\n    return () => <div class='tabs' id='tabs'>\r\n        <ElTabs onTab-click={onTabClick} modelValue={state.activeName}>\r\n          {props.tabs?.map(item => <ElTabPane label={item.label} name={item.name} disabled={item.disabled}>\r\n              {slots.default && slots.default(item)}\r\n            </ElTabPane>)}\r\n        </ElTabs>\r\n      </div>;\n  }\n\n});",
+  "map": null,
+  "sourceType": "module",
+  "externalDependencies": {}
+}

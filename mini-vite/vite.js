@@ -2,9 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const Koa = require('koa')
 
-// 解析.vue单文件组件
+// 解析.vue单文件组件  分离出 template  script  style
 const compilerSfc = require('@vue/compiler-sfc')
-// 解析dom
+// 解析dom  把template模板转换成render函数
 const compileDom = require('@vue/compiler-dom')
 
 // 解析路径
@@ -91,10 +91,12 @@ app.use(async ctx => {
       const render = compileDom.compile(template.content, {
         mode: 'module'
       }).code
+      console.log(render, 'render')
+
       ctx.type = 'application/javascript'
       ctx.body = rewriteImport(render)
     } else if (query.type == 'style') {
-      // 这里只是解析了文件内的css 没有解析导入到css
+      // 这里只是解析了文件内的css 没有解析导入的css
       // style
       const style = descriptor.styles
       ctx.type = 'application/javascript'
